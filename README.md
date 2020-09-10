@@ -1,4 +1,5 @@
-# ci-restserver
-Check the recent version at https://github.com/chriskacerguis/codeigniter-restserver
+# Read me
+Basic Rest Api menggunakan CodeIgniter 3
 
-My alternate version https://github.com/ardisaurus/old-rest-ci
+# Credits
+https://github.com/ardisaurus/ci-restserver

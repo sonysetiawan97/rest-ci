@@ -1,5 +1,5 @@
-# Read me
+## Read me
 Basic Rest Api menggunakan CodeIgniter 3
 
-## Credits
+### Credits
 https://github.com/ardisaurus/ci-restserver

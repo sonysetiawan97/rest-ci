@@ -25,13 +25,13 @@ class ModelHadiah extends CI_Model{
     $response['status']=200;
     $response['error']=false;
     $response['user']=$all;
-    $response['message']='Get user berhasil';
+    $response['message']='Get hadiah berhasil';
 
     return $all;
   }
 
   public function post_hadiah($id_hadiah,$nama_hadiah,$point_hadiah){
-    if(empty($id_hadiah) || empty($first_name) || empty($last_name)){
+    if(empty($id_hadiah) || empty($nama_hadiah) || empty($point_hadiah)){
       return $this->empty_response();
     }else{
       $data = array(
@@ -46,14 +46,14 @@ class ModelHadiah extends CI_Model{
         $response['status']=200;
         $response['error']=false;
         $response['boolstatus']=$insert;
-        $response['message']='Post user berhasil';
+        $response['message']='Post hadiah berhasil';
 
         return $response;
       }else{
         $response['status']=502;
         $response['error']=true;
         $response['boolstatus']=$insert;
-        $response['message']='Post user gagal';
+        $response['message']='Post hadiah gagal';
 
         return $response;
       }
@@ -80,14 +80,14 @@ class ModelHadiah extends CI_Model{
         $response['status']=200;
         $response['error']=false;
         $response['boolstatus']=$update;
-        $response['message']='Put user berhasil';
+        $response['message']='Put hadiah berhasil';
 
         return $response;
       }else{
         $response['status']=502;
         $response['error']=true;
         $response['boolstatus']=$update;
-        $response['message']='Put user gagal';
+        $response['message']='Put hadiah gagal';
 
         return $response;
       }
@@ -110,14 +110,14 @@ class ModelHadiah extends CI_Model{
         $response['status']=200;
         $response['error']=false;
         $response['boolstatus']=$delete;
-        $response['message']='Delete user berhasil';
+        $response['message']='Delete hadiah berhasil';
 
         return $response;
       }else{
         $response['status']=502;
         $response['error']=true;
         $response['boolstatus']=$delete;
-        $response['message']='Delete user gagal';
+        $response['message']='Delete hadiah gagal';
 
         return $response;
       }

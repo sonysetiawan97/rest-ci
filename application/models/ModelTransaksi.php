@@ -16,10 +16,9 @@ class ModelTransaksi extends CI_Model{
     );
 
     if($id_transaksi == ''){
-      $all = $this->db->get("table_transaksi")->result();
+      $all = $this->db->get('table_transaksi')->result();
     } else {
-      $this->db->where($where);
-      $all = $this->db->get("table_transaksi")->result();
+      $all = $this->db->get_where('table_transaksi', $where) -> result();
     }
 
     $response['status']=200;
@@ -35,14 +34,21 @@ class ModelTransaksi extends CI_Model{
       return $this->empty_response();
     }else{
       $data = array(
-        "id_hadiah" => $id_hadiah,
-        "nama_hadiah" => $nama_hadiah,
-        "point_hadiah" => $point_hadiah
+        'id_transaksi' => $id_transaksi,
+        'id_user' => $id_user,
+        'total_transaksi' => $total_transaksi
       );
 
-      $insert = $this->db->insert("table_transaksi", $data);
+      $insert = $this->db->insert('table_transaksi', $data);
 
-      if($insert){
+      //flush query
+      $this->db->flush_cache();
+
+      //menambahkan point user
+      $query = "UPDATE table_user SET point_user=point_user+5 WHERE id_user='$id_user'";
+      $update_point = $this->db->query($query);
+
+      if($insert & $update_point){
         $response['status']=200;
         $response['error']=false;
         $response['boolstatus']=$insert;
@@ -65,16 +71,15 @@ class ModelTransaksi extends CI_Model{
       return $this->empty_response();
     }else{
       $where = array(
-        "id_transaksi" => $id_transaksi
-      );$set = array(
-        "id_transaksi" => $id_transaksi,
-        "id_user" => $id_user,
-        "total_transaksi" => $total_transaksi
+        'id_transaksi' => $id_transaksi
+      );
+      $set = array(
+        'id_transaksi' => $id_transaksi,
+        'id_user' => $id_user,
+        'total_transaksi' => $total_transaksi
       );
 
-      $this->db->where($where);
-
-      $update = $this->db->update("table_transaksi",$set);
+      $update = $this->db->update('table_transaksi', $set, $where);
 
       if($update){
         $response['status']=200;
@@ -102,9 +107,7 @@ class ModelTransaksi extends CI_Model{
         "id_transaksi" => $id_transaksi
       );
 
-      $this->db->where($where);
-
-      $delete = $this->db->delete("table_transaksi");
+      $delete = $this->db->delete('table_transaksi', $where);
 
       if($delete){
         $response['status']=200;

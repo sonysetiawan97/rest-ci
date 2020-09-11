@@ -16,7 +16,9 @@ class ModelTransaksi extends CI_Model{
     );
 
     if($id_transaksi == ''){
-      $all = $this->db->get('table_transaksi')->result();
+      $query = "SELECT table_user.id_user,table_user.first_name,table_user.last_name,table_transaksi.id_transaksi,table_transaksi.total_transaksi FROM table_transaksi INNER JOIN table_user ON table_user.id_user=table_transaksi.id_user";
+      $all = $this->db->query($query)->result();
+      // $all = $this->db->get('table_transaksi')->result();
     } else {
       $all = $this->db->get_where('table_transaksi', $where) -> result();
     }
